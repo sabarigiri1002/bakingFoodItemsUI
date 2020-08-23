@@ -29,50 +29,50 @@ export default class HomePage extends Component {
             let questionId = event.target.id;
             isAQuestion = event.target[event.target.selectedIndex].getAttribute('data-select');
             requestData = { questionId, answer: value }
-        }
-        let newState = {};
-        switch (level) {
-            case "level1":
-                newState.level2 = null;
-                newState.level3 = null;
-                newState.level4 = null;
-                newState.level5 = null;
-                newState.level6 = null;
-                break;
 
-            case "level2":
-                newState.level3 = null;
-                newState.level4 = null;
-                newState.level5 = null;
-                newState.level6 = null;
-                break;
+            let newState = {};
+            switch (level) {
+                case "level1":
+                    newState.level2 = null;
+                    newState.level3 = null;
+                    newState.level4 = null;
+                    newState.level5 = null;
+                    newState.level6 = null;
+                    break;
 
-            case "level3":
-                newState.level4 = null;
-                newState.level5 = null;
-                newState.level6 = null;
-                break;
+                case "level2":
+                    newState.level3 = null;
+                    newState.level4 = null;
+                    newState.level5 = null;
+                    newState.level6 = null;
+                    break;
 
-            case "level4":
-                newState.level5 = null;
-                newState.level6 = null;
-                break;
+                case "level3":
+                    newState.level4 = null;
+                    newState.level5 = null;
+                    newState.level6 = null;
+                    break;
 
-            case "level5":
-                newState.level6 = null;
-                break;
-        }
-        console.log("isAQuestion => ", isAQuestion);
-        if (isAQuestion == "true") {
-            apiCalls.getBakingFoodQuestions(requestData).then(responseData => {
-                newState[level] = responseData;
-                this.setState(newState)
-            });
-        } else {
-            apiCalls.getBakingFoodTax(requestData).then(responseData => {
-                newState[level] = responseData;
-                this.setState(newState)
-            });
+                case "level4":
+                    newState.level5 = null;
+                    newState.level6 = null;
+                    break;
+
+                case "level5":
+                    newState.level6 = null;
+                    break;
+            }
+            if (isAQuestion == "true") {
+                apiCalls.getBakingFoodQuestions(requestData).then(responseData => {
+                    newState[level] = responseData;
+                    this.setState(newState)
+                });
+            } else {
+                apiCalls.getBakingFoodTax(requestData).then(responseData => {
+                    newState[level] = responseData;
+                    this.setState(newState)
+                });
+            }
         }
 
     }
