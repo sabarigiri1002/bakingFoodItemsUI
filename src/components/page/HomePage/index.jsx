@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 
 import apiCalls from '../../../config/apiCalls';
 
-import FoodQuestionComponent from './../../organism/FoodQuestion'
+import FoodQuestionComponent from './../../organism/FoodQuestion';
+import PageHeaderComponent from './../../molecule/PageHeaderComponent'
 
 
 
@@ -11,6 +12,13 @@ export default class HomePage extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            level1 : null,
+            level2 :null,
+            level3 :null,
+            level4 :null,
+            level5 : null
+        }
     }
 
     componentDidMount() {
@@ -73,27 +81,16 @@ export default class HomePage extends Component {
                     this.setState(newState)
                 });
             }
+            
         }
 
     }
 
     render() {
-        // const { level1, level2,level3 } = this.state;
-        const level1 = this.state?.level1;
-        const level2 = this.state?.level2;
-        const level3 = this.state?.level3;
-        const level4 = this.state?.level4;
-        const level5 = this.state?.level5;
+        const {level1, level2, level3, level4, level5} = this.state;
         return (
             <div className="row">
-                <div className="col-lg-12">
-                    <div className="row">
-                        <div className="col-lg-6 col-sm-12 text-left">
-                            <h5>Baking Food Items Tax Details</h5>
-                        </div>
-                    </div>
-                    <br />
-                </div>
+                <PageHeaderComponent title="Baking Food Items Tax Details" />
                 <div className="col-12">
                     <div className="container">
                         <div className="row">
